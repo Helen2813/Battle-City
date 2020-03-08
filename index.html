@@ -6,6 +6,19 @@
     <title>Battle City</title>
 </head>
 <body>
-    
+    <script src="engine/Loader.js"></script>
+    <script>
+        
+        const { Loader } = GameEngine
+        const loader = new Loader
+
+        loader.addImage('b', 'static/b.jpg')
+        loader.addJson('persons', 'static/persons.json')
+
+        // Loader.loadImage('static/b.jpg').then(image => {
+        //     document.body.append(image)
+        // })
+        // document.body.append()
+    </script>
 </body>
 </html>

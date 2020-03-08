@@ -18,6 +18,10 @@
             this.loadOrder.images.push({name, src})
         }
 
+        addJson (name, addres) {
+            this.loadOrder.images.push({ name, addres })
+        }
+
         load (callback) {
             const promises = []
 
@@ -34,11 +38,25 @@
                             this.loadOrder.images.splice(index, 1)
                         }
                     })
+
+                    for (const jsonData of this.loadOrder.jsons) {
+                        const { name, addres } = jsonData
+        
+                        const promise = Loader
+                            .loadJson(addres)
+                            .then( json => {
+                                this.resourses.jsons[name] = json
+        
+                                if (this.loadOrder.images.includes(jsonData)) {
+                                    const index = this.loadOrder.jsons.indexOf(jsonData)
+                                    this.loadOrder.jsons.splice(index, 1)
+                                }
+                            })
                 promises.push(promise)
             }
 
             Promise.all(promises).then(() => callback)
-        }
+        }}
 
         static loadImage (src) {
             return new Promise((resolve, reject) => {
@@ -50,6 +68,15 @@
                 catch (err) {
                     reject(err)
                 }
+                
+            })
+        }
+        static loadJson (addres) {
+            return new Promise((resolve, reject) => {
+                fetch(addres)
+                    .then(result => result.json())
+                    .then(result => resolve(result))
+                    .catch(err => reject(err))
                 
             })
         }
