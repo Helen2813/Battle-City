@@ -7,18 +7,38 @@
 </head>
 <body>
     <script src="engine/Loader.js"></script>
+    <script src="engine/Renderer.js"></script>
     <script>
         
-        const { Loader } = GameEngine
+        const { Loader, Renderer } = GameEngine
         const loader = new Loader
+        const renderer = new Renderer({
+            width: 500,
+            height: 500,
+            background: 'gray',
 
-        loader.addImage('b', 'static/b.jpg')
-        loader.addJson('persons', 'static/persons.json')
+            update (timestamp) {
+                renderer.draw((canvas, content) => {
+                    content.fillStyle = 'black'
+                    content.beginPath()
+                    content.arc(
+                        canvas.width / 2 + 100 * Math.cos(timestamp / 100), 
+                        canvas.height / 2 + 100 * Math.sin(timestamp / 100), 
+                        5, 
+                        0, 
+                        Math.PI * 2)
+                    content.fill()
+                })
+            }
+        })
 
-        // Loader.loadImage('static/b.jpg').then(image => {
-        //     document.body.append(image)
-        // })
-        // document.body.append()
+        document.body.append(renderer.canvas)
+
+        // loader.addImage('b', 'static/b.jpg')
+        // loader.addJson('persons', 'static/persons.json')
+
+        loader.load()
+
     </script>
 </body>
 </html>

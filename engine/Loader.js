@@ -22,6 +22,14 @@
             this.loadOrder.images.push({ name, addres })
         }
 
+        getImage (name) {
+           return this.resourses.images[name]
+        }
+
+        getJson (name) {
+            return this.resourses.jsons[name]
+        }
+
         load (callback) {
             const promises = []
 
