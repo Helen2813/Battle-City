@@ -1,10 +1,13 @@
 [
     {
         "id": 1,
-        "name": "Fktrctq"
+        "name": "Алексей",
+        "age": 27
     },
+
     {
         "id": 2,
-        "name": "Fktrctq"
+        "name": "Петр",
+        "age": 18
     }
 ]

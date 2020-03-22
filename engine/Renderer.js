@@ -5,46 +5,33 @@
         constructor (args = {}) {
             this.canvas = document.createElement('canvas')
             this.context = this.canvas.getContext('2d')
-
+            
             this.background = args.background || 'black'
             this.canvas.width = args.width || 50
             this.canvas.height = args.height || 50
-            this.update = args.update || (() => {})
-
-            this.stage = new GameEngine.Container()
-
-            requestAnimationFrame(timestamp => this.tick(timestamp))
         }
 
-        get displayObjects () {
-            return _getDisplayObjects(this.stage)
+        // get displayObjects () {
+        //     return _getDisplayObjects(this.stage)
 
-            function _getDisplayObjects (container, result = []) {
-                for (const displayObject of container.displayObjects) {
-                    if (displayObject instanceof GameEngine.Container) {
-                        _getDisplayObjects(displayObject, result)
-                    }
+        //     function _getDisplayObjects (container, result = []) {
+        //         for (const displayObject of container.displayObjects) {
+        //             if (displayObject instanceof GameEngine.Container) {
+        //                 _getDisplayObjects(displayObject, result)
+        //             }
 
-                    else {
-                        result.push(displayObject)
-                    }
-                }
+        //             else {
+        //                 result.push(displayObject)
+        //             }
+        //         }
 
-                return result
-            }
-        }
+        //         return result
+        //     }
+        // }
 
-        tick (timestamp) {
-            this.update(timestamp)
-            this.clear()
-            this.render()
-
-            requestAnimationFrame(timestamp => this.tick(timestamp))
-        }
-
-        render () {
-            this.stage.draw(this.canvas, this.context)
-        }
+        // render () {
+        //     this.stage.draw(this.canvas, this.context)
+        // }
 
         clear () {
             this.context.fillStyle = this.background

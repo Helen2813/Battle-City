@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle City</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Battle city</title>
 </head>
 <body>
     <script src="engine/DisplayObject.js"></script>
@@ -11,79 +12,14 @@
     <script src="engine/Loader.js"></script>
     <script src="engine/Renderer.js"></script>
     <script src="engine/Sprite.js"></script>
-    <script>
-        
-        const { Loader, Renderer, Sprite, Container } = GameEngine
-        let sprite1 = null
-        let sprite2 = null
-        let container = null
-        const loader = new Loader
-        
-        const renderer = new Renderer({
-            width: 500,
-            height: 500,
-            background: 'gray',
+    <script src="engine/Scene.js"></script>
+    <script src="engine/Mouse.js"></script>
+    <script src="engine/Keyboard.js"></script>
+    <script src="engine/Point.js"></script>
+    <script src="engine/Line.js"></script>
+    <script src="engine/Body.js"></script>
+    <script src="engine/Game.js"></script>
 
-            update (timestamp) {
-                if (!sprite1 || !sprite2) {
-                    return
-                }
-                sprite = new Sprite(loader.getImage('bunny'), {
-            scale: 0.25,
-            anchorX: 0.5,
-            anchorY: 0.5
-        })
-
-    const container = new Container()
-    renderer.stage.add(container)
-    container.add(sprite)
-
-
-    document.body.append(renderer.canvas)
-
-    document.body.append(renderer.canvas)
-    container.rotation = timestamp / 1000
-        sprite1.rotation = timestamp / 1000
-        sprite2.rotation = -timestamp / 1000
-        // sprite.rotation = 0
-
-        // loader.addImage('b', 'static/b.jpg')
-        // loader.addJson('persons', 'static/persons.json')
-
-    loader.load()
-    sprite1 = new Sprite(loader.getImage('bunny'), {
-        x: 100,
-        y: 200,
-        // rotation: Math.PI / 2,
-        scale: 0.25,
-        anchorX: 0.5,
-        anchorY: 0.5
-    })
-
-    sprite2 = new Sprite(loader.getImage('bunny'), {
-        x: 400,
-        y: 200,
-        // rotation: Math.PI / 2,
-        scale: 0.25,
-        anchorX: 0.5,
-        anchorY: 0.5
-    })
-    container = new Container()
-    container.x = 100
-    container.y = 100
-    // container.rotation = Math.PI / 4
-    container.anchorX = 0.5
-    container.anchorY = 0.5
-    container.width = renderer.canvas.width
-    container.height = renderer.canvas.height
-
-    renderer.stage.add(container)
-    container.add(sprite)
-    container.add(sprite1)
-    container.add(sprite2)
-
-
-
-    </script>
+    <script src="game/index.js"></script>
 </body>
 </html>

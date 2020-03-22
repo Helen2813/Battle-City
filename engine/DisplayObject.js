@@ -18,6 +18,7 @@
             this.scaleY = args.scaleY || 1
 
             this.parent = null
+            this.visible = true
 
             if (args.scale !== undefined) {
                 this.setScale(args.scale)
@@ -32,11 +33,11 @@
             this.x = value + this.anchorX * this.width
             return value
         }
-
+        
         get absoluteY () {
             return this.y - this.anchorY * this.height
         }
-
+        
         set absoluteY (value) {
             this.y = value + this.anchorY * this.height
             return value
@@ -48,17 +49,22 @@
         }
 
         setParent (parent) {
-            if (this.parent) {
+            if (this.parent && this.parent.remove) {
                 this.parent.remove(this)
             }
 
-            if (parent) {
+            if (parent && parent.add) {
                 parent.add(this)
-                this.parent = parent
             }
+            
+            this.parent = parent
         }
 
-        draw () {}
+        draw (callback) {
+            if (this.visible) {
+                callback()
+            }
+        }
     }
 
     window.GameEngine = window.GameEngine || {}
